@@ -24,7 +24,7 @@ module.exports = (mongoose) => {
           lastName: { type: String },
           email: { type: String },
           favoriteColor: { type: String },
-          birthday: { type: String }
+          birthday: { type: Date } // Updated to Date type
         },
         websiteURL: {
           type: String,
