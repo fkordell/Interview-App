@@ -1,2 +1,2 @@
-### Get all tasks list (Local) 
+### Get all companies (Local) 
 GET http://localhost:8080/companies
