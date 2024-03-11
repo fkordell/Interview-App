@@ -1,19 +1,19 @@
 {
-    "companyName": "",
-    "companyDescription": "",
-    "industryCategory": "",
-    "location": {
-      "address": "",
-      "city": "",
-      "state": "",
-      "country": ""
-    },
-    "contactInfo": {
-      "firstName": "",
-      "lastName": "",
-      "email": "",
-      "favoriteColor": "",
-      "birthday": ""
-    },
-    "websiteURL": ""
-  }
+  "companyName": "Tech Solutions",
+  "companyDescription": "Leading IT solutions provider.",
+  "industryCategory": "Technology",
+  "location": {
+    "address": "123 Main St",
+    "city": "Techville",
+    "state": "CA",
+    "country": "USA"
+  },
+  "contactInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@techsolutions.com",
+    "favoriteColor": "Blue",
+    "birthday": "1980-05-15"
+  },
+  "websiteURL": "https://www.techsolutions.com"
+}
