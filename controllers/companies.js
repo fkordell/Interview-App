@@ -1,43 +1,42 @@
 const { ObjectId } = require("mongodb");
 const db = require("../models");
-const company = db.company;
+const Companies = db.companies;
 
 // GET Request Controllers (Read only) - for all companies
 const getCompanies = async (req, res, next) => {
-    // 'Getting all companies from the mongo database'
-    company.find({})
-      .then((lists) => {
-        res.setHeader("Content-Type", "application/json");
-        res.status(200).json(lists);
-      })
-      .catch((err) => {
-        //For error handling
-        res.status(500).send({
-          message: err.message || "An error occurred while getting companies.",
-        });
+  // 'Getting all companies from the mongo database'
+  Companies.find({})
+    .then((lists) => {
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).json(lists);
+    })
+    .catch((err) => {
+      //For error handling
+      res.status(500).send({
+        message: err.message || "An error occurred while getting companies.",
       });
-  };
+    });
+};
 
 // GET Request Controllers (Read only) - for single company
-  const getSingleCompany = async (req, res, next) => {
-    // 'Getting single comapny from the mongo database'
-  
-    const userId = req.params.id;
-    company.findOne({ _id: userId })
-      .then((data) => {
-        if (!data) {
-          res.status(400).send({ message: "No ticket found with id " + userId });
-        } else {
-          res.status(200).json(data);
-        }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: "Error getting ticket with id " + userId,
-        });
-      });
-  };
+const getSingleCompany = async (req, res, next) => {
+  // 'Getting single comapny from the mongo database'
 
+  const userId = req.params.id;
+  Companies.findOne({ _id: userId })
+    .then((data) => {
+      if (!data) {
+        res.status(400).send({ message: "No company found with id " + userId });
+      } else {
+        res.status(200).json(data);
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Error getting company with id " + userId,
+      });
+    });
+};
 
 // POST Request Controllers (Create) - Create a company based on the mongoose model
 const createCompany = async (req, res) => {
@@ -52,12 +51,12 @@ const createCompany = async (req, res) => {
       contactInfo,
       websiteURL,
     } = req.body;
-    
+
     // Destructuring nested location fields
     const { address, city, state, country } = location;
     // Destructuring nested contactInfo fields
     const { firstName, lastName, email, favoriteColor, birthday } = contactInfo;
-    
+
     const requiredFields = {
       companyName,
       companyDescription,
@@ -80,8 +79,7 @@ const createCompany = async (req, res) => {
       }
     }
 
-    const Company = req.models.Company; // Assuming you've set up models properly
-    const company = new Company({
+    const company = new Companies({
       companyName,
       companyDescription,
       industryCategory,
@@ -139,7 +137,7 @@ const updateCompany = async (req, res) => {
 
     const Company = req.models.Company; // Assuming you've set up models properly
 
-    const response = await Company.findByIdAndUpdate(companyId, company, {
+    const response = await Companies.findByIdAndUpdate(companyId, company, {
       new: true,
     });
 
@@ -187,12 +185,10 @@ const deleteCompany = async (req, res) => {
   }
 };
 
-
-  module.exports = {
-    getCompanies,
-    getSingleCompany,
-    createCompany,
-    updateCompany,
-    deleteCompany,
-  };
-  
+module.exports = {
+  getCompanies,
+  getSingleCompany,
+  createCompany,
+  updateCompany,
+  deleteCompany,
+};

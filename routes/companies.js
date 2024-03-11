@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const companyController = require("../controllers/company");
+const companyController = require("../controllers/companies");
 
 // GET Requests (Read)
 router.get("/", companyController.getCompanies);
