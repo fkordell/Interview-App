@@ -4,38 +4,52 @@ const Companies = db.companies;
 
 // GET Request Controllers (Read only) - for all companies
 const getCompanies = async (req, res, next) => {
-  // 'Getting all companies from the mongo database'
-  Companies.find({})
-    .then((lists) => {
-      res.setHeader("Content-Type", "application/json");
-      res.status(200).json(lists);
-    })
-    .catch((err) => {
-      //For error handling
-      res.status(500).send({
-        message: err.message || "An error occurred while getting companies.",
-      });
-    });
+  try {
+    const companies = await Companies.find({});
+    const formattedCompanies = companies.map((company) => ({
+      _id: company._id,
+      companyName: company.companyName,
+      companyDescription: company.companyDescription,
+      industryCategory: company.industryCategory,
+      location: company.location,
+      contactInfo: company.contactInfo,
+      websiteURL: company.websiteURL,
+    }));
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).json(formattedCompanies);
+  } catch (err) {
+    console.error("Error occurred while getting companies:", err);
+    res
+      .status(500)
+      .json({ message: "An error occurred while getting companies." });
+  }
 };
 
 // GET Request Controllers (Read only) - for single company
 const getSingleCompany = async (req, res, next) => {
-  // 'Getting single comapny from the mongo database'
+  try {
+    const userId = req.params.id;
+    const company = await Companies.findOne({ _id: userId });
 
-  const userId = req.params.id;
-  Companies.findOne({ _id: userId })
-    .then((data) => {
-      if (!data) {
-        res.status(400).send({ message: "No company found with id " + userId });
-      } else {
-        res.status(200).json(data);
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error getting company with id " + userId,
+    if (!company) {
+      res.status(400).send({ message: "No company found with id " + userId });
+    } else {
+      res.status(200).json({
+        _id: company._id,
+        companyName: company.companyName,
+        companyDescription: company.companyDescription,
+        industryCategory: company.industryCategory,
+        location: company.location,
+        contactInfo: company.contactInfo,
+        websiteURL: company.websiteURL,
       });
-    });
+    }
+  } catch (err) {
+    console.error("Error getting company with id:", err);
+    res
+      .status(500)
+      .send({ message: "Error getting company with id " + userId });
+  }
 };
 
 // POST Request Controllers (Create) - Create a company based on the mongoose model
