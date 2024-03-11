@@ -21,7 +21,7 @@
         }
       }
     },
-    "/company/": {
+    "/companies/": {
       "get": {
         "description": "",
         "produces": [
@@ -80,7 +80,7 @@
         }
       }
     },
-    "/company/{id}": {
+    "/companies/{id}": {
       "get": {
         "description": "",
         "parameters": [
