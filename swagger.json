@@ -7,10 +7,33 @@
   },
   "host": "localhost:8080",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "Home",
+      "description": "API Home Page"
+    },
+    {
+      "name": "Companies",
+      "description": "Hiring companies"
+    },
+    {
+      "name": "User",
+      "description": "Operations about users"
+    },
+    {
+      "name": "Interview",
+      "description": "Interview process"
+    },
+    {
+      "name": "School",
+      "description": "School information"
+    }
+  ],
   "schemes": ["http"],
   "paths": {
     "/api-docs": {
       "get": {
+        "tags": ["Home"],
         "description": "Get the Swagger API documentation.",
         "responses": {
           "default": {
@@ -21,6 +44,7 @@
     },
     "/companies/": {
       "get": {
+        "tags": ["Companies"],
         "description": "",
         "produces": ["application/json"],
         "responses": {
@@ -33,6 +57,7 @@
         }
       },
       "post": {
+        "tags": ["Companies"],
         "description": "Creating a single company in our database",
         "parameters": [
           {
@@ -79,6 +104,7 @@
     },
     "/companies/{id}": {
       "get": {
+        "tags": ["Companies"],
         "description": "",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
@@ -90,6 +116,7 @@
         }
       },
       "put": {
+        "tags": ["Companies"],
         "description": "Updating a single company in our database",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" },
@@ -136,6 +163,7 @@
         }
       },
       "delete": {
+        "tags": ["Companies"],
         "description": "Deleting a single company from our database",
         "parameters": [
           { "name": "id", "in": "path", "required": true, "type": "string" }
