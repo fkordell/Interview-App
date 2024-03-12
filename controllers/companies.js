@@ -61,29 +61,17 @@ const createCompany = async (req, res) => {
       companyName,
       companyDescription,
       industryCategory,
-      location,
-      contactInfo,
+      location: { address, city, state, country },
+      contactInfo: { firstName, lastName, email, favoriteColor, birthday },
       websiteURL,
     } = req.body;
-
-    // Destructuring nested location fields
-    const { address, city, state, country } = location;
-    // Destructuring nested contactInfo fields
-    const { firstName, lastName, email, favoriteColor, birthday } = contactInfo;
 
     const requiredFields = {
       companyName,
       companyDescription,
       industryCategory,
-      address,
-      city,
-      state,
-      country,
-      firstName,
-      lastName,
-      email,
-      favoriteColor,
-      birthday,
+      location: { address, city, state, country },
+      contactInfo: { firstName, lastName, email, favoriteColor, birthday },
       websiteURL,
     };
 
@@ -97,14 +85,15 @@ const createCompany = async (req, res) => {
       companyName,
       companyDescription,
       industryCategory,
-      location: { address, city, state, country }, // Assign nested location fields
-      contactInfo: { firstName, lastName, email, favoriteColor, birthday }, // Assign nested contactInfo fields
+      location: { address, city, state, country },
+      contactInfo: { firstName, lastName, email, favoriteColor, birthday },
       websiteURL,
     });
 
-    const data = await company.save();
-    console.log(data);
-    return res.status(201).send(data);
+    const savedCompany = await company.save();
+
+    console.log(savedCompany);
+    return res.status(201).send(savedCompany);
   } catch (err) {
     return res.status(500).send({
       message: err.message || "Error occurred while creating a company.",
@@ -124,7 +113,7 @@ const updateCompany = async (req, res) => {
     }
 
     const companyId = req.params.id;
-    const company = {
+    const companyData = {
       companyName: req.body.companyName,
       companyDescription: req.body.companyDescription,
       industryCategory: req.body.industryCategory,
@@ -142,26 +131,28 @@ const updateCompany = async (req, res) => {
       "contactInfo",
       "websiteURL",
     ];
-    const missingFields = requiredFields.filter((field) => !company[field]);
+    const missingFields = requiredFields.filter((field) => !companyData[field]);
 
     if (missingFields.length > 0) {
       const errorMessage = `Missing data: ${missingFields.join(", ")}`;
       return res.status(400).send({ error: "Bad Request - " + errorMessage });
     }
 
-    const Company = req.models.Company; // Assuming you've set up models properly
+    const updatedCompany = await Companies.findByIdAndUpdate(
+      companyId,
+      companyData,
+      {
+        new: true,
+      }
+    );
 
-    const response = await Companies.findByIdAndUpdate(companyId, company, {
-      new: true,
-    });
-
-    if (!response) {
+    if (!updatedCompany) {
       return res
         .status(404)
         .send({ message: "No company found with id " + companyId });
     }
 
-    return res.status(204).json(response);
+    return res.status(204).json(updatedCompany);
   } catch (err) {
     return res
       .status(500)
@@ -173,6 +164,7 @@ const updateCompany = async (req, res) => {
 const deleteCompany = async (req, res) => {
   try {
     // #swagger.description = 'Deleting a single company from our database'
+
     if (!ObjectId.isValid(req.params.id)) {
       return res
         .status(400)
@@ -181,9 +173,7 @@ const deleteCompany = async (req, res) => {
 
     const companyId = req.params.id;
 
-    const Company = req.models.Company; // Assuming you've set up models properly
-
-    const data = await Company.deleteOne({ _id: companyId });
+    const data = await Companies.deleteOne({ _id: companyId });
 
     if (data.deletedCount > 0) {
       return res.status(200).send();
