@@ -1,0 +1,21 @@
+[
+    {
+      "userFirstName": "Sarah",
+      "userLastName": "Jane",
+      "userEmail": "sarahj24@yahoo.com",
+      "userPassword": "b3stStud3nt!"
+    },
+    {
+        "userFirstName": "George",
+        "userLastName": "Ham",
+        "userEmail": "hamg1990@gmail.com",
+        "userPassword": "gr33nEggs&"
+    },
+    {
+        "userFirstName": "Julie",
+        "userLastName": "Moon",
+        "userEmail": "julieMoon@live.com",
+        "userPassword": "$unPower10"
+    }
+  ]
+  
