@@ -5,11 +5,9 @@
     "description": "CSE 341 API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "interview-app-7mxc.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/api-docs": {
       "get": {
@@ -24,9 +22,7 @@
     "/companies/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -181,9 +177,7 @@
     "/users/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
