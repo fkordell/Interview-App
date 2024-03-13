@@ -1,6 +1,6 @@
 const { ObjectId } = require("mongodb");
 const db = require("../models");
-const Users = db.user;
+const Users = db.users;
 
 // GET Request Controllers (Read only) - for all users
 const getUsers = async (req, res, next) => {
