@@ -7,12 +7,33 @@
   },
   "host": "interview-app-7mxc.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
+  "tags": [
+    {
+      "name": "Home",
+      "description": "API Home Page"
+    },
+    {
+      "name": "Companies",
+      "description": "Hiring companies"
+    },
+    {
+      "name": "Users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "Schools",
+      "description": "School information"
+    },
+    {
+      "name": "Interviews",
+      "description": "Interview process"
+    }
   ],
+  "schemes": ["https"],
   "paths": {
     "/api-docs": {
       "get": {
+        "tags": ["Home"],
         "description": "",
         "responses": {
           "default": {
@@ -23,10 +44,9 @@
     },
     "/companies/": {
       "get": {
+        "tags": ["Companies"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -37,6 +57,7 @@
         }
       },
       "post": {
+        "tags": ["Companies"],
         "description": "Creating a single company in our database",
         "parameters": [
           {
@@ -82,6 +103,7 @@
     },
     "/companies/{id}": {
       "get": {
+        "tags": ["Companies"],
         "description": "",
         "parameters": [
           {
@@ -104,6 +126,7 @@
         }
       },
       "put": {
+        "tags": ["Companies"],
         "description": "Updating a single company in our database",
         "parameters": [
           {
@@ -156,6 +179,7 @@
         }
       },
       "delete": {
+        "tags": ["Companies"],
         "description": "Deleting a single company from our database",
         "parameters": [
           {
@@ -180,10 +204,9 @@
     },
     "/users/": {
       "get": {
+        "tags": ["Users"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -194,6 +217,7 @@
         }
       },
       "post": {
+        "tags": ["Users"],
         "description": "Creating a single user in our database",
         "parameters": [
           {
@@ -233,6 +257,7 @@
     },
     "/users/{id}": {
       "get": {
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -255,6 +280,7 @@
         }
       },
       "put": {
+        "tags": ["Users"],
         "description": "Updating a single user in our database",
         "parameters": [
           {
@@ -301,6 +327,7 @@
         }
       },
       "delete": {
+        "tags": ["Users"],
         "description": "Deleting a single user from our database",
         "parameters": [
           {
@@ -325,10 +352,9 @@
     },
     "/schools/": {
       "get": {
+        "tags": ["Schools"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -339,6 +365,7 @@
         }
       },
       "post": {
+        "tags": ["Schools"],
         "description": "Creating a single school in our database",
         "parameters": [
           {
@@ -375,6 +402,7 @@
     },
     "/schools/{id}": {
       "get": {
+        "tags": ["Schools"],
         "description": "",
         "parameters": [
           {
@@ -397,6 +425,7 @@
         }
       },
       "put": {
+        "tags": ["Schools"],
         "description": "Updating a single school in our database",
         "parameters": [
           {
@@ -440,6 +469,7 @@
         }
       },
       "delete": {
+        "tags": ["Schools"],
         "description": "Deleting a single school from our database",
         "parameters": [
           {
@@ -464,6 +494,7 @@
     },
     "/interviews/": {
       "get": {
+        "tags": ["Interviews"],
         "description": "",
         "responses": {
           "default": {
@@ -472,6 +503,7 @@
         }
       },
       "post": {
+        "tags": ["Interviews"],
         "description": "",
         "responses": {
           "default": {
@@ -482,6 +514,7 @@
     },
     "/interviews/{id}": {
       "get": {
+        "tags": ["Interviews"],
         "description": "",
         "parameters": [
           {
@@ -498,6 +531,7 @@
         }
       },
       "put": {
+        "tags": ["Interviews"],
         "description": "",
         "parameters": [
           {
@@ -514,6 +548,7 @@
         }
       },
       "delete": {
+        "tags": ["Interviews"],
         "description": "",
         "parameters": [
           {
