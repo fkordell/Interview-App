@@ -20,7 +20,7 @@ db.url = mongoURL;
 // Importing and storing all the models in the db object
 db.companies = require("./companyModel")(mongoose);
 db.users = require("./userModel")(mongoose);
-//db. = require("./schoolModel")(mongoose);
+db.schools = require("./schoolModel")(mongoose);
 //db. = require("./interviewModel")(mongoose);
 
 // Exporting the db object for use in other modules
