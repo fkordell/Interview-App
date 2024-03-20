@@ -7,7 +7,7 @@ module.exports =(mongoose) => {
       companyName: {
         type: String,
       },
-      postion: {
+      position: {
         type: String,
       },
       location: {
