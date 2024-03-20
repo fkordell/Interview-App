@@ -92,7 +92,7 @@ const updateInterview = async (req, res) => {
     try {
         // #swagger.description = 'Updating a single interview in our database'
         if (!ObjectId.isValid(req.params.id)) {
-            return res.status(400).json("Must use a valid interview id to update a school");
+            return res.status(400).json("Must use a valid interview id to update a interview");
         }
         const interviewId = req.params.id;
         const interviewData = {
@@ -117,19 +117,19 @@ const updateInterview = async (req, res) => {
             return res.status(400).send({ error: "Bad Request - " + errorMessage });
           }
 
-          const updatedInterview = await Companies.findByIdAndUpdate(
-            companyId,
-            companyData,
+          const updatedInterview = await Interview.findByIdAndUpdate(
+            interviewId,
+            interviewData,
             {
               new: true,
             }
           );
 
           if (!updatedInterview) {
-            return res.status(404).send({ message: "No company found with id " + interviewId });
+            return res.status(404).send({ message: "No interview found with id " + interviewId });
           }
     } catch  (err) {
-        return res.status(500).send({ message: "Error updating company: " + err.message });
+        return res.status(500).send({ message: "Error updating interview: " + err.message });
     }
 };
 
@@ -138,7 +138,7 @@ const deleteInterview = async (req, res) => {
       // #swagger.description = 'Deleting a single interview from our database'
   
       if (!ObjectId.isValid(req.params.id)) {
-        return res.status(400).json("Must use a valid interview id to delete a company");
+        return res.status(400).json("Must use a valid interview id to delete a interview");
       }
   
       const interviewId = req.params.id;
