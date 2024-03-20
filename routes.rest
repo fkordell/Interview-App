@@ -31,3 +31,36 @@ Content-Type: application/json
 
 ### DELETE contact
 DELETE https://localhost:8080/users/...
+
+### Get all interviews
+GET http://localhost:8080/interviews HTTP/1.1
+
+### Get an interview by its ID
+GET http://localhost:8080/interviews/... HTTP/1.1
+
+### Create an interview
+POST http://localhost:8080/interviews/ HTTP/1.1
+Content-Type: application/json 
+
+{
+      "companyName": "Boeing",
+      "position": "Junior Software Developer",
+      "location": "123 Boeing Way, Seattle, WA.",
+      "date": "12-13-2024",
+      "time": "10:30 AM"
+}
+
+### update an interview
+PUT http://localhost:8080/interviews/... HTTP/1.1
+Content-Type: application/json
+
+{
+      "companyName": "",
+      "position": "",
+      "location": "",
+      "date": "",
+      "time": ""
+}
+
+### delete an interview
+DELETE http://localhost:8080/interviews/... HTTP/1.1
