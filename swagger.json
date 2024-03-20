@@ -466,7 +466,7 @@
       "get": {
         "description": "",
         "produces": [
-          null
+          "application/json"
         ],
         "responses": {
           "200": {

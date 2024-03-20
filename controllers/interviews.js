@@ -13,11 +13,11 @@ const getInterviews = async (req, res, next) => {
             date: interview.date,
             time: interview.time,
         }));
-        res.setHeader("Content-Type,", "application/json");
+        res.setHeader("Content-Type", "application/json");
         res.status(200).json(formattedInterviews);
-    } catch {
+    } catch (err) {
         console.error("Error ocurred while getting interviews.", err);
-        res.status(500).json({ message: "Error fetching interviews", error: err});
+        res.status(500).json({ message: "Error fetching interviews"});
     }
 };
 
@@ -39,7 +39,7 @@ const getInterviewById = async (req, res, next) => {
         }
     } catch (err) {
         console.error('Error getting interview with id:', err);
-        res.status(500).send({ message: 'Error fetching interview', error: err });
+        res.status(500).send({ message: 'Error fetching interview',});
     }
 };
 
