@@ -43,7 +43,6 @@ POST http://localhost:8080/interviews/ HTTP/1.1
 Content-Type: application/json 
 
 {
-      "_id": "65fa4ba173a4939699729fb7",
       "companyName": "Boeing",
       "position": "Junior Software Developer",
       "location": "123 Boeing Way, Seattle, WA.",
@@ -52,11 +51,10 @@ Content-Type: application/json
 }
 
 ### update an interview
-PUT http://localhost:8080/interviews/65fa4ba173a4939699729fb7 HTTP/1.1
+PUT http://localhost:8080/interviews/65fa5416705430a8c73f7474 HTTP/1.1
 Content-Type: application/json
 
 {
-      "_id": "65fa4ba173a4939699729fb7",
       "companyName": "Boeing",
       "position": "Junior Software Developer",
       "location": "123 Boeing Way, Seattle, WA.",
