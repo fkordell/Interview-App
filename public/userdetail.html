@@ -149,8 +149,9 @@
 
               userDiv.innerHTML = `
             <p><label>User id:</label> ${user._id}</p>
-            <p><label>User Name:</label> ${user.userFirstName} ${user.userLastName}</p>
-            <p><label>Email:</label> <a href="mailto:${user.userEmail}">${user.userEmail}</a></p>
+            <p><label>First Name:</label> ${user.userFirstName}</p>
+            <p><label>Last Name:</label> ${user.userLastName}</p>
+            <p><label>Email:</label> <a href="mailto:${user.userEmail}"> ${user.userEmail}</a></p>
             <p><label>Password:</label> ${user.userPassword}</p>
           `;
 
