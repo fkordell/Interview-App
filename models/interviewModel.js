@@ -1,10 +1,10 @@
-module.exports =(mongoose) => {
+module.exports = (mongoose) => {
   const { ObjectId } = mongoose.Schema.Types;
   const Interview = mongoose.model(
     "interviews",
     mongoose.Schema({
       _id: { type: ObjectId, auto: true },
-      companyName: {
+      interviewer: {
         type: String,
       },
       position: {
@@ -14,26 +14,12 @@ module.exports =(mongoose) => {
         type: String,
       },
       date: {
-        type: String,
-        required: [true, 'Please enter a date'],
-        validate: {
-          validator: function(v) {
-            return /^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4}$/.test(v);
-          },
-          message: props => `${props.value} is not a valid date! Must be in MM-DD-YYYY format.`
-        }
+        type: Date,
       },
       time: {
-        type: String, 
-        required: [true, 'Please enter a time'],
-        validate: {
-          validator: function(v) {
-            return /^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/i.test(v);
-          },
-          message: props => `${props.value} is not a valid time! Must be in "hh:mm AM" or "hh:mm PM" format.`
-        }
+        type: String,
       },
     })
-  )
-  return Interview
-}
+  );
+  return Interview;
+};

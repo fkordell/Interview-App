@@ -1,66 +1,333 @@
-### Get all companies (Local) 
+### Get all companies(Local) 
 GET http://localhost:8080/companies
 
-### Get all users (Local)
+### Get a single company (Local) 
+GET http://localhost:8080/companies/65fb12f836e7e01872f786a0
+
+### Create a company (Local) 
+POST http://localhost:8080/companies HTTP/1.1 
+Content-Type: application/json
+
+{
+  "companyName": "Tech Solutions",
+  "companyDescription": "Leading IT solutions provider.",
+  "industryCategory": "Technology",
+  "location": {
+    "address": "123 Main St",
+    "city": "Techville",
+    "state": "CA",
+    "country": "USA"
+  },
+  "contactInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@techsolutions.com",
+    "favoriteColor": "Blue",
+    "birthday": "02-15-1980"
+  },
+  "websiteURL": "https://www.techsolutions.com"
+}
+
+
+### Update company (Local)
+PUT http://localhost:8080/companies/65fb12f836e7e01872f786a0 HTTP/1.1 
+content-type: application/json
+
+{
+  "companyName": "Tech Solutions",
+  "companyDescription": "Leading IT solutions provider.",
+  "industryCategory": "Technology",
+  "location": {
+    "address": "123 Main St",
+    "city": "Techville",
+    "state": "CA",
+    "country": "USA"
+  },
+  "contactInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@techsolutions.com",
+    "favoriteColor": "Blue",
+    "birthday": "02-15-1980"
+  },
+  "websiteURL": "https://www.techsolutions.com"
+}
+
+
+### Delete company (Local) 
+DELETE http://localhost:8080/companies/65fb12f836e7e01872f786a0 HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all users list (Local) 
 GET http://localhost:8080/users
 
-### Get user by id
-GET http://localhost:8080/users/...
+### Get a single user (Local) 
+GET http://localhost:8080/users/65f100092d60a72c6291a8f0
 
-### Create user
-POST http://localhost:8080/users/ HTTP/1.1
+### Create a user (Local) 
+POST http://localhost:8080/users HTTP/1.1 
 Content-Type: application/json
 
 {
-      "userFirstName": "Henry",
-      "userLastName": "Brown",
-      "userEmail": "henryBrown2@gmail.com",
-      "userPassword": "down7ownBr@wn",
+   "userFirstName":"Sarah",
+   "userLastName":"Jane",
+   "userEmail":"sarahj24@yahoo.com",
+   "userPassword":"b3stStud3nt!"
 }
 
-### PUT user
-PUT http://localhost:8080/users/...
+### Update a user (Local) 
+PUT http://localhost:8080/users/65f100092d60a72c6291a8f0 HTTP/1.1 
+content-type: application/json
+
+{
+   "userFirstName":"Sarah",
+   "userLastName":"Jane",
+   "userEmail":"sarahj24@yahoo.com",
+   "userPassword":"b3stStud3nt!"
+}
+
+### Delete a user (Local)
+DELETE http://localhost:8080/users/65f100092d60a72c6291a8f0 HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all schools list (Local) 
+GET http://localhost:8080/schools
+
+### Get a single school (Local) 
+GET http://localhost:8080/school/65f3b710d69d3493b56ea0ee
+
+### Create a school (Local) 
+POST http://localhost:8080/schools HTTP/1.1 
 Content-Type: application/json
 
 {
-        "userFirstName": "George",
-        "userLastName": "Ham",
-        "userEmail": "hamg190@gmail.com",
-        "userPassword": "gr33nEggs&"
+   "schoolName":"BYUI",
+   "schoolAddress":"101 E Viking St, Rexburg, ID 83460",
+   "schoolPhone":"(208) 496-1411"
 }
 
-### DELETE contact
-DELETE https://localhost:8080/users/...
+### Update a school (Local) 
+PUT http://localhost:8080/schools/65f3b710d69d3493b56ea0ee HTTP/1.1 
+content-type: application/json
 
-### Get all interviews
-GET http://localhost:8080/interviews HTTP/1.1
+{
+   "schoolName":"BYUI",
+   "schoolAddress":"101 E Viking St, Rexburg, ID 83460",
+   "schoolPhone":"(208) 496-1411"
+}
 
-### Get an interview by its ID
-GET http://localhost:8080/interviews/... HTTP/1.1
+### Delete a school (Local)
+DELETE http://localhost:8080/schools/65f3b710d69d3493b56ea0ee HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all interviews list (Local) 
+GET http://localhost:8080/interviews
+
+### Get a single interview (Local) 
+GET http://localhost:8080/interviews/65fa5416705430a8c73f7474
+
+### Create an interview (Local) 
+POST http://localhost:8080/interviews HTTP/1.1 
+Content-Type: application/json
+
+{
+   "interviewer":"99",
+   "position":"Junior Software Developer",
+   "location":"123 Boeing Way, Seattle, WA",
+   "date":"10-23-2024",
+   "time":"10:30"
+}
+
+### Update an interview (Local) 
+PUT http://localhost:8080/interviews/65fa5416705430a8c73f7474 HTTP/1.1 
+content-type: application/json
+
+{
+   "interviewer":"99",
+   "position":"Junior Software Developer",
+   "location":"123 Boeing Way, Seattle, WA",
+   "date":"10-23-2024",
+   "time":"10:30"
+}
+
+### Delete an interview (Local)
+DELETE http://localhost:8080/interviews/65fa5416705430a8c73f7474 HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all companies 
+GET https://interview-app-7mxc.onrender.com/companies
+
+### Get a single company
+GET https://interview-app-7mxc.onrender.com/companies/65fb12f836e7e01872f786a0
+
+### Create a company 
+POST https://interview-app-7mxc.onrender.com/companies HTTP/1.1 
+Content-Type: application/json
+
+{
+  "companyName": "Tech Solutions",
+  "companyDescription": "Leading IT solutions provider.",
+  "industryCategory": "Technology",
+  "location": {
+    "address": "123 Main St",
+    "city": "Techville",
+    "state": "CA",
+    "country": "USA"
+  },
+  "contactInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@techsolutions.com",
+    "favoriteColor": "Blue",
+    "birthday": "02-15-1980"
+  },
+  "websiteURL": "https://www.techsolutions.com"
+}
+
+
+### Update company
+PUT https://interview-app-7mxc.onrender.com/companies/65fb12f836e7e01872f786a0 HTTP/1.1 
+content-type: application/json
+
+{
+  "companyName": "Tech Solutions",
+  "companyDescription": "Leading IT solutions provider.",
+  "industryCategory": "Technology",
+  "location": {
+    "address": "123 Main St",
+    "city": "Techville",
+    "state": "CA",
+    "country": "USA"
+  },
+  "contactInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe@techsolutions.com",
+    "favoriteColor": "Blue",
+    "birthday": "02-15-1980"
+  },
+  "websiteURL": "https://www.techsolutions.com"
+}
+
+
+### Delete company
+DELETE https://interview-app-7mxc.onrender.com/companies/65fb12f836e7e01872f786a0 HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all users list 
+GET https://interview-app-7mxc.onrender.com/users
+
+### Get a single user 
+GET https://interview-app-7mxc.onrender.com/users/65f100092d60a72c6291a8f0
+
+### Create a user
+POST https://interview-app-7mxc.onrender.com/users HTTP/1.1 
+Content-Type: application/json
+
+{
+   "userFirstName":"Sarah",
+   "userLastName":"Jane",
+   "userEmail":"sarahj24@yahoo.com",
+   "userPassword":"b3stStud3nt!"
+}
+
+### Update a user 
+PUT https://interview-app-7mxc.onrender.com/users/65f100092d60a72c6291a8f0 HTTP/1.1 
+content-type: application/json
+
+{
+   "userFirstName":"Sarah",
+   "userLastName":"Jane",
+   "userEmail":"sarahj24@yahoo.com",
+   "userPassword":"b3stStud3nt!"
+}
+### Delete a user 
+DELETE https://interview-app-7mxc.onrender.com/users/65f100092d60a72c6291a8f0 HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all schools list
+GET https://interview-app-7mxc.onrender.com/schools
+
+### Get a single school  
+GET https://interview-app-7mxc.onrender.com/school/65f3b710d69d3493b56ea0ee
+
+### Create a school 
+POST https://interview-app-7mxc.onrender.com/schools HTTP/1.1 
+Content-Type: application/json
+
+{
+   "schoolName":"BYUI",
+   "schoolAddress":"101 E Viking St, Rexburg, ID 83460",
+   "schoolPhone":"(208) 496-1411"
+}
+
+### Update a school
+PUT https://interview-app-7mxc.onrender.com/schools/65f3b710d69d3493b56ea0ee HTTP/1.1 
+content-type: application/json
+
+{
+   "schoolName":"BYUI",
+   "schoolAddress":"101 E Viking St, Rexburg, ID 83460",
+   "schoolPhone":"(208) 496-1411"
+}
+
+### Delete a school
+DELETE https://interview-app-7mxc.onrender.com/schools/65f3b710d69d3493b56ea0ee HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+### Get all interviews list
+GET https://interview-app-7mxc.onrender.com/interviews
+
+### Get a single interview
+GET https://interview-app-7mxc.onrender.com/interviews/65fa5416705430a8c73f7474
 
 ### Create an interview
-POST http://localhost:8080/interviews/ HTTP/1.1
-Content-Type: application/json 
-
-{
-      "companyName": "Boeing",
-      "position": "Junior Software Developer",
-      "location": "123 Boeing Way, Seattle, WA.",
-      "date": "11-13-2024",
-      "time": "10:45 AM"
-}
-
-### update an interview
-PUT http://localhost:8080/interviews/65fa5416705430a8c73f7474 HTTP/1.1
+POST https://interview-app-7mxc.onrender.com/interviews HTTP/1.1 
 Content-Type: application/json
 
 {
-      "companyName": "Boeing",
-      "position": "Junior Software Developer",
-      "location": "123 Boeing Way, Seattle, WA.",
-      "date": "11-12-2024",
-      "time": "10:45 AM"
+   "interviewer":"Boeing",
+   "position":"Junior Software Developer",
+   "location":"123 Boeing Way, Seattle, WA",
+   "date":"10-23-2024",
+   "time":"10:30 PM"
 }
 
-### delete an interview
-DELETE http://localhost:8080/interviews/... HTTP/1.1
+### Update an interview
+PUT https://interview-app-7mxc.onrender.com/interviews/65fa5416705430a8c73f7474 HTTP/1.1 
+content-type: application/json
+
+{
+   "interviewer":"Boeing",
+   "position":"Junior Software Developer",
+   "location":"123 Boeing Way, Seattle, WA",
+   "date":"10-23-2024",
+   "time":"10:30 PM"
+}
+
+### Delete an interview 
+DELETE https://interview-app-7mxc.onrender.com/interviews/65fa5416705430a8c73f7474 HTTP/1.1
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////

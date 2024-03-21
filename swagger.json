@@ -2,17 +2,49 @@
   "swagger": "2.0",
   "info": {
     "title": "Interview Application",
-    "description": "CSE 341 API",
+    "description": "CSE-341: Final Project - API",
     "version": "1.0.0"
   },
   "host": "interview-app-7mxc.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
+  "tags": [
+    {
+      "name": "Home",
+      "description": "API Home Page"
+    },
+    {
+      "name": "Companies",
+      "description": "Hiring companies"
+    },
+    {
+      "name": "Users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "Schools",
+      "description": "Interview process"
+    },
+    {
+      "name": "Interviews",
+      "description": "School information"
+    }
   ],
+  "schemes": ["https"],
   "paths": {
+    "/": {
+      "get": {
+        "tags": ["Home"],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api-docs": {
       "get": {
+        "tags": ["Home"],
         "description": "",
         "responses": {
           "default": {
@@ -23,53 +55,12 @@
     },
     "/companies/": {
       "get": {
+        "tags": ["Companies"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "Creating a single company in our database",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "companyName": {
-                  "example": "any"
-                },
-                "companyDescription": {
-                  "example": "any"
-                },
-                "industryCategory": {
-                  "example": "any"
-                },
-                "location": {
-                  "example": "any"
-                },
-                "contactInfo": {
-                  "example": "any"
-                },
-                "websiteURL": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
@@ -78,10 +69,71 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "post": {
+        "tags": ["Companies"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "companyName": { "example": "Any" },
+                "companyDescription": {
+                  "example": "Any"
+                },
+                "industryCategory": { "example": "Any" },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "address": { "example": "Any" },
+                    "city": { "example": "Any" },
+                    "state": { "example": "Any" },
+                    "country": { "example": "Any" }
+                  }
+                },
+                "contactInfo": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": { "example": "Any" },
+                    "lastName": { "example": "Any" },
+                    "email": { "example": "Any" },
+                    "favoriteColor": { "example": "Any" },
+                    "birthday": { "example": "mm-dd-yyyy" }
+                  }
+                },
+                "websiteURL": { "example": "Any" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK - The request was successful."
+          },
+          "201": {
+            "description": "Created - The company was successfully created."
+          },
+          "400": {
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "404": {
+            "description": "Bad Request - Data validation check error."
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred on the server."
+          }
+        }
       }
     },
     "/companies/{id}": {
       "get": {
+        "tags": ["Companies"],
         "description": "",
         "parameters": [
           {
@@ -104,7 +156,8 @@
         }
       },
       "put": {
-        "description": "Updating a single company in our database",
+        "tags": ["Companies"],
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -118,45 +171,56 @@
             "schema": {
               "type": "object",
               "properties": {
-                "companyName": {
-                  "example": "any"
-                },
+                "companyName": { "example": "Any" },
                 "companyDescription": {
-                  "example": "any"
+                  "example": "Any"
                 },
-                "industryCategory": {
-                  "example": "any"
-                },
+                "industryCategory": { "example": "Any" },
                 "location": {
-                  "example": "any"
+                  "type": "object",
+                  "properties": {
+                    "address": { "example": "Any" },
+                    "city": { "example": "Any" },
+                    "state": { "example": "Any" },
+                    "country": { "example": "Any" }
+                  }
                 },
                 "contactInfo": {
-                  "example": "any"
+                  "type": "object",
+                  "properties": {
+                    "firstName": { "example": "Any" },
+                    "lastName": { "example": "Any" },
+                    "email": { "example": "Any" },
+                    "favoriteColor": { "example": "Any" },
+                    "birthday": { "example": "mm-dd-yyyy" }
+                  }
                 },
-                "websiteURL": {
-                  "example": "any"
-                }
+                "websiteURL": { "example": "Any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "Updated - The company was successfully updated."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Bad Request - Data validation check error."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
       },
       "delete": {
-        "description": "Deleting a single company from our database",
+        "tags": ["Companies"],
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -167,6 +231,27 @@
         ],
         "responses": {
           "200": {
+            "description": "Delete - The request was successful."
+          },
+          "400": {
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred on the server."
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": ["Users"],
+        "description": "",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
             "description": "OK"
           },
           "400": {
@@ -176,24 +261,9 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/users/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       },
       "post": {
+        "tags": ["Users"],
         "description": "Creating a single user in our database",
         "parameters": [
           {
@@ -219,20 +289,30 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK - The request was successful."
+          },
           "201": {
-            "description": "Created"
+            "description": "Created - The user was successfully created."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "404": {
+            "description": "Bad Request - Data validation check error."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
       }
     },
     "/users/{id}": {
       "get": {
+        "tags": ["Users"],
         "description": "",
         "parameters": [
           {
@@ -255,6 +335,7 @@
         }
       },
       "put": {
+        "tags": ["Users"],
         "description": "Updating a single user in our database",
         "parameters": [
           {
@@ -286,21 +367,25 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "Updated - The company was successfully updated."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Bad Request - Data validation check error."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
       },
       "delete": {
+        "tags": ["Users"],
         "description": "Deleting a single user from our database",
         "parameters": [
           {
@@ -312,6 +397,27 @@
         ],
         "responses": {
           "200": {
+            "description": "Delete - The request was successful."
+          },
+          "400": {
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred on the server."
+          }
+        }
+      }
+    },
+    "/schools/": {
+      "get": {
+        "tags": ["Schools"],
+        "description": "",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
             "description": "OK"
           },
           "400": {
@@ -321,24 +427,9 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/schools/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       },
       "post": {
+        "tags": ["Schools"],
         "description": "Creating a single school in our database",
         "parameters": [
           {
@@ -361,20 +452,30 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK - The request was successful."
+          },
           "201": {
-            "description": "Created"
+            "description": "Created - The school was successfully created."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "404": {
+            "description": "Bad Request - Data validation check error."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
       }
     },
     "/schools/{id}": {
       "get": {
+        "tags": ["Schools"],
         "description": "",
         "parameters": [
           {
@@ -397,6 +498,7 @@
         }
       },
       "put": {
+        "tags": ["Schools"],
         "description": "Updating a single school in our database",
         "parameters": [
           {
@@ -425,21 +527,25 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "Updated - The company was successfully updated."
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Bad Request - Data validation check error."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
       },
       "delete": {
+        "tags": ["Schools"],
         "description": "Deleting a single school from our database",
         "parameters": [
           {
@@ -451,6 +557,27 @@
         ],
         "responses": {
           "200": {
+            "description": "Delete - The request was successful."
+          },
+          "400": {
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred on the server."
+          }
+        }
+      }
+    },
+    "/interviews/": {
+      "get": {
+        "tags": ["Interviews"],
+        "description": "",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
             "description": "OK"
           },
           "400": {
@@ -460,71 +587,18 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/interviews/": {
-      "get": {
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
       },
       "post": {
+        "tags": ["Interviews"],
         "description": "Creating a single interview in our database",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/interviews/{id}": {
-      "get": {
-        "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "Updating a single interview in our database",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "companyName": {
+                "interviewer": {
                   "example": "any"
                 },
                 "position": {
@@ -544,19 +618,31 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK - The request was successful."
+          },
+          "201": {
+            "description": "Created - The interview was successfully created."
+          },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Bad Request - Data validation check error."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
-      },
-      "delete": {
-        "description": "Deleting a single interview from our database",
+      }
+    },
+    "/interviews/{id}": {
+      "get": {
+        "tags": ["Interviews"],
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -574,6 +660,85 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Interviews"],
+        "description": "Updating a single interview in our database",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "interviewer": {
+                  "example": "any"
+                },
+                "position": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated - The company was successfully updated."
+          },
+          "400": {
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "404": {
+            "description": "Bad Request - Data validation check error."
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred on the server."
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Interviews"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete - The request was successful."
+          },
+          "400": {
+            "description": "Bad Request - The request was malformed or missing required parameters."
+          },
+          "401": {
+            "description": "Please login to make changes!"
+          },
+          "500": {
+            "description": "Internal Server Error - An unexpected error occurred on the server."
           }
         }
       }

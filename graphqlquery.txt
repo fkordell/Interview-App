@@ -1,0 +1,123 @@
+
+# query to search for companies in graphql
+query {
+  companies {
+    _id
+    companyName
+    companyDescription
+    industryCategory
+    location {
+      address
+      city
+      state
+      country
+    }
+    contactInfo {
+      firstName
+      lastName
+      email
+      favoriteColor
+      birthday
+    }
+    websiteURL
+  }
+}
+
+# search by id
+query {
+  companyById(id: "") {
+    _id
+    companyName
+    companyDescription
+    industryCategory
+    location {
+      address
+      city
+      state
+      country
+    }
+    contactInfo {
+      firstName
+      lastName
+      email
+      favoriteColor
+      birthday
+    }
+    websiteURL
+  }
+}
+
+
+##################################################################################################
+
+# query to search for users in graphql
+query {
+  users {
+    _id
+    userFirstName
+    userLastName
+    userEmail
+    userPassword
+  }
+}
+
+# search by id
+query {
+  userById (id: "") {
+    _id
+    userFirstName
+    userLastName
+    userEmail
+    userPassword
+  }
+}
+
+##################################################################################################
+
+# query to search for schools in graphql
+query {
+  schools{
+    _id
+    schoolName
+    schoolPhone
+    schoolAddress
+  
+  }
+}
+
+# search by id
+query {
+  schoolById (id: "") {
+    _id
+    schoolName
+    schoolPhone
+    schoolAddress
+  
+  }
+}
+
+##################################################################################################
+
+# query to search for interviews in graphql
+query {
+  interviews{
+    _id
+    interviewer
+    position
+    location
+    date
+    time
+  }
+}
+
+# Search by id
+query {
+  interviewById (id: "") {
+    _id
+    interviewer
+    position
+    location
+    date
+    time
+  }
+}

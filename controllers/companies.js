@@ -104,12 +104,8 @@ const createCompany = async (req, res) => {
 // PUT Request Controllers (Create) - Update a company based on the mongoose model
 const updateCompany = async (req, res) => {
   try {
-    // #swagger.description = 'Updating a single company in our database'
-
     if (!ObjectId.isValid(req.params.id)) {
-      return res
-        .status(400)
-        .json("Must use a valid company id to update a company");
+      return res.status(400).json("Must provide a valid company ID to update.");
     }
 
     const companyId = req.params.id;
@@ -122,7 +118,6 @@ const updateCompany = async (req, res) => {
       websiteURL: req.body.websiteURL,
     };
 
-    // Check for missing fields in the updated company data
     const requiredFields = [
       "companyName",
       "companyDescription",
@@ -141,18 +136,19 @@ const updateCompany = async (req, res) => {
     const updatedCompany = await Companies.findByIdAndUpdate(
       companyId,
       companyData,
-      {
-        new: true,
-      }
+      { new: true }
     );
 
     if (!updatedCompany) {
       return res
         .status(404)
-        .send({ message: "No company found with id " + companyId });
+        .send({ message: "No company found with ID: " + companyId });
     }
 
-    return res.status(204).json(updatedCompany);
+    // Returning 200 instead of 204 to include a response message
+    return res
+      .status(200)
+      .json({ message: "Company updated successfully.", companyData });
   } catch (err) {
     return res
       .status(500)
@@ -163,29 +159,42 @@ const updateCompany = async (req, res) => {
 // DELETE Request Controllers (Create) - Delete a company based on the mongoose model
 const deleteCompany = async (req, res) => {
   try {
-    // #swagger.description = 'Deleting a single company from our database'
-
     if (!ObjectId.isValid(req.params.id)) {
       return res
         .status(400)
-        .json("Must use a valid company id to delete a company");
+        .json({ error: "Must use a valid company id to delete a company." });
     }
 
     const companyId = req.params.id;
 
-    const data = await Companies.deleteOne({ _id: companyId });
+    // Fetch the company before deletion to get the company name
+    const companyToDelete = await Companies.findById(companyId);
 
-    if (data.deletedCount > 0) {
-      return res.status(200).send();
-    } else {
+    if (!companyToDelete) {
       return res
-        .status(500)
-        .json("Some error occurred while deleting the company.");
+        .status(404)
+        .json({ error: "No company found with id " + companyId });
     }
+
+    // Get the name of the company
+    const { companyName } = companyToDelete;
+
+    // Delete the company
+    const deletedCompany = await Companies.findByIdAndDelete(companyId);
+
+    if (!deletedCompany) {
+      return res
+        .status(404)
+        .json({ error: "No company found with id " + companyId });
+    }
+
+    return res.status(200).json({
+      message: `Company: *${companyName}* was deleted successfully.`,
+    });
   } catch (error) {
     return res
       .status(500)
-      .json("An error occurred while processing your request.");
+      .json({ error: "An error occurred while deleting company." });
   }
 };
 

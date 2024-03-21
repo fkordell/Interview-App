@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Details</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5; /* Light gray background */
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 80px auto 20px; /* Added margin-top and reduced margin-bottom */
+        padding: 20px;
+        background-color: #fff; /* White background */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+
+      h1 {
+        font-family: "Roboto", sans-serif; /* Google Font Roboto */
+        font-size: 48px; /* Increased font size */
+        font-weight: 700; /* Added font weight for boldness */
+        margin-bottom: 20px;
+        margin-top: 0px;
+        color: #316ff6; /* Dark gray color */
+        text-align: center;
+      }
+
+      .navigation-bar {
+        text-align: center;
+        margin-bottom: 30px; /* Increased margin-bottom for better separation */
+      }
+
+      .navigation-bar a {
+        display: inline-block;
+        color: #333; /* Dark gray color */
+        text-decoration: none;
+        font-size: 18px;
+        margin: 0 15px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease; /* Added transition for smoother hover effect */
+      }
+
+      .navigation-bar a:hover {
+        background-color: #e5e7eb; /* Lighter gray background on hover */
+        color: #000; /* Change text color on hover */
+      }
+
+      .interview {
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-color: #fff; /* White background */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .interview p {
+        margin: 8px 0;
+        color: #666; /* Gray color */
+      }
+
+      .interview label {
+        font-weight: bold;
+        color: #444; /* Dark gray color */
+      }
+
+      .interview a {
+        color: #007bff; /* Blue color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .interview a:hover {
+        color: #0056b3; /* Darker blue color on hover */
+      }
+
+      .back-button {
+        display: block;
+        margin: 20px auto 0;
+        padding: 12px;
+        background-color: #316ff6; /* Blue color */
+        color: #fff; /* White color */
+        text-decoration: none;
+        border-radius: 6px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-button:hover {
+        background-color: #0056b3; /* Darker blue color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Interview Details</h1>
+      <!-- Stylish UI Navigation Bar -->
+      <div class="navigation-bar">
+        <a href="https://interview-app-7mxc.onrender.com/companydetail"
+          >Companies</a
+        >
+        <a href="https://interview-app-7mxc.onrender.com/userdetail">Users</a>
+        <a href="https://interview-app-7mxc.onrender.com/schooldetail"
+          >Schools</a
+        >
+        <a href="https://interview-app-7mxc.onrender.com/interviewdetail"
+          ><b>Interviews</b></a
+        >
+      </div>
+      <br />
+
+      <!-- Interview Details -->
+      <div id="interviewContainer">
+        <!-- Interviews will be dynamically added here -->
+      </div>
+
+      <!-- Logout Button -->
+      <a href="https://interview-app-7mxc.onrender.com" class="back-button"
+        >Home</a
+      >
+    </div>
+
+    <script>
+      window.onload = function () {
+        // Fetch interview data from server
+        fetch("https://interview-app-7mxc.onrender.com/interviews")
+          .then((response) => response.json())
+          .then((data) => {
+            // Process the data and dynamically create HTML for each interview
+            const interviewContainer =
+              document.getElementById("interviewContainer");
+
+            data.forEach((interview) => {
+              const interviewDiv = document.createElement("div");
+              interviewDiv.classList.add("interview");
+
+              interviewDiv.innerHTML = `
+            <p><label>Interview id:</label> ${interview._id}</p>  
+            <p><label>Interviewer:</label> ${interview.interviewer}</p>
+            <p><label>Position:</label> ${interview.position}</p>
+            <p><label>Location:</label> ${interview.location}</p>
+            <p><label>Date:</label> ${interview.date}</p>
+            <p><label>Time:</label> ${interview.time}</p>
+          `;
+
+              interviewContainer.appendChild(interviewDiv);
+            });
+          })
+          .catch((error) => console.error("Error fetching interviews:", error));
+      };
+    </script>
+  </body>
+</html>
