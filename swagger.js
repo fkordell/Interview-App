@@ -5,8 +5,8 @@ const doc = {
     title: "Interview Application",
     description: "CSE 341 API",
   },
-  host: "interview-app-7mxc.onrender.com",
-  schemes: ["https"],
+  host: "localhost:8080",
+  schemes: ["http"],
 };
 
 const outputFile = "./swagger.json";

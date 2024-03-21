@@ -2,10 +2,9 @@
 const express = require("express");
 const router = express.Router();
 
+// Route handling for documentation
 router.use("/", require("./swagger"));
 router.use("/companies", require("./companies"));
 router.use("/users", require("./users"));
-router.use("/schools", require("./schools"));
-// router.use('/interviews', require('./interviews'));
 
 module.exports = router;

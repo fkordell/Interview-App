@@ -5,30 +5,8 @@
     "description": "CSE 341 API",
     "version": "1.0.0"
   },
-  "host": "interview-app-7mxc.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "Home",
-      "description": "API Home Page"
-    },
-    {
-      "name": "Companies",
-      "description": "Hiring companies"
-    },
-    {
-      "name": "Users",
-      "description": "Operations about users"
-    },
-    {
-      "name": "Schools",
-      "description": "School information"
-    },
-    {
-      "name": "Interviews",
-      "description": "Interview process"
-    }
-  ],
   "schemes": ["https"],
   "paths": {
     "/api-docs": {

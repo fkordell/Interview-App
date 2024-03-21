@@ -163,29 +163,42 @@ const updateCompany = async (req, res) => {
 // DELETE Request Controllers (Create) - Delete a company based on the mongoose model
 const deleteCompany = async (req, res) => {
   try {
-    // #swagger.description = 'Deleting a single company from our database'
-
     if (!ObjectId.isValid(req.params.id)) {
       return res
         .status(400)
-        .json("Must use a valid company id to delete a company");
+        .json({ error: "Must use a valid company id to delete a company." });
     }
 
     const companyId = req.params.id;
 
-    const data = await Companies.deleteOne({ _id: companyId });
+    // Fetch the company before deletion to get the company name
+    const companyToDelete = await Companies.findById(companyId);
 
-    if (data.deletedCount > 0) {
-      return res.status(200).send();
-    } else {
+    if (!companyToDelete) {
       return res
-        .status(500)
-        .json("Some error occurred while deleting the company.");
+        .status(404)
+        .json({ error: "No company found with id " + companyId });
     }
+
+    // Get the name of the company
+    const { companyName } = companyToDelete;
+
+    // Delete the company
+    const deletedCompany = await Companies.findByIdAndDelete(companyId);
+
+    if (!deletedCompany) {
+      return res
+        .status(404)
+        .json({ error: "No company found with id " + companyId });
+    }
+
+    return res.status(200).json({
+      message: `Company: *${companyName}* was deleted successfully.`,
+    });
   } catch (error) {
     return res
       .status(500)
-      .json("An error occurred while processing your request.");
+      .json({ error: "An error occurred while deleting company." });
   }
 };
 
