@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Details</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5; /* Light gray background */
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 80px auto 20px; /* Added margin-top and reduced margin-bottom */
+        padding: 20px;
+        background-color: #fff; /* White background */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+
+      h1 {
+        font-family: "Roboto", sans-serif; /* Google Font Roboto */
+        font-size: 48px; /* Increased font size */
+        font-weight: 700; /* Added font weight for boldness */
+        margin-bottom: 20px;
+        margin-top: 0px;
+        color: #316ff6; /* Dark gray color */
+        text-align: center;
+      }
+
+      .navigation-bar {
+        text-align: center;
+        margin-bottom: 30px; /* Increased margin-bottom for better separation */
+      }
+
+      .navigation-bar a {
+        display: inline-block;
+        color: #333; /* Dark gray color */
+        text-decoration: none;
+        font-size: 18px;
+        margin: 0 15px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease; /* Added transition for smoother hover effect */
+      }
+
+      .navigation-bar a:hover {
+        background-color: #e5e7eb; /* Lighter gray background on hover */
+        color: #000; /* Change text color on hover */
+      }
+
+      .company {
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-color: #fff; /* White background */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .company p {
+        margin: 8px 0;
+        color: #666; /* Gray color */
+      }
+
+      .company label {
+        font-weight: bold;
+        color: #444; /* Dark gray color */
+      }
+
+      .company a {
+        color: #007bff; /* Blue color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .company a:hover {
+        color: #0056b3; /* Darker blue color on hover */
+      }
+
+      .back-button {
+        display: block;
+        margin: 20px auto 0;
+        padding: 12px;
+        background-color: #316ff6; /* Blue color */
+        color: #fff; /* White color */
+        text-decoration: none;
+        border-radius: 6px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-button:hover {
+        background-color: #0056b3; /* Darker blue color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Company Details</h1>
+      <!-- Stylish UI Navigation Bar -->
+      <div class="navigation-bar">
+        <a href="https://interview-app-7mxc.onrender.com/companydetail"
+          ><b>Companies</b></a
+        >
+        <a href="https://interview-app-7mxc.onrender.com/userdetail">Users</a>
+        <a href="https://interview-app-7mxc.onrender.com/schooldetail"
+          >Schools</a
+        >
+        <a href="https://interview-app-7mxc.onrender.com/interviewdetail"
+          >Interviews</a
+        >
+      </div>
+      <br />
+
+      <!-- Company Details -->
+      <div id="companyContainer">
+        <!-- Companies will be dynamically added here -->
+      </div>
+
+      <!-- Logout Button -->
+      <a href="https://interview-app-7mxc.onrender.com" class="back-button"
+        >Home</a
+      >
+    </div>
+
+    <script>
+      window.onload = function () {
+        // Fetch company data from server
+        fetch("https://interview-app-7mxc.onrender.com/companies")
+          .then((response) => response.json())
+          .then((data) => {
+            // Process the data and dynamically create HTML for each company
+            const companyContainer =
+              document.getElementById("companyContainer");
+
+            data.forEach((company) => {
+              const companyDiv = document.createElement("div");
+              companyDiv.classList.add("company");
+
+              companyDiv.innerHTML = `
+            <p><label>Company id:</label> ${company._id}</p>    
+            <p><label>Company Name:</label> ${company.companyName}</p>
+            <p><label>Description:</label> ${company.companyDescription}</p>
+            <p><label>Industry:</label> ${company.industryCategory}</p>
+            <p><label>Location:</label> ${company.location.city}, ${company.location.state}, ${company.location.country}</p>
+            <p><label>Contact Person:</label> ${company.contactInfo.firstName} ${company.contactInfo.lastName}</p>
+            <p><label>Email:</label> <a href="mailto:${company.contactInfo.email}">${company.contactInfo.email}</a></p>
+            <p><label>Favorite Color:</label> ${company.contactInfo.favoriteColor}</p>
+            <p><label>Birthday:</label> ${new Date(company.contactInfo.birthday).toLocaleDateString()}</p>
+            <p><label>Website:</label> <a href="${company.websiteURL}">${company.websiteURL}</a></p>
+          `;
+
+              companyContainer.appendChild(companyDiv);
+            });
+          })
+          .catch((error) => console.error("Error fetching companies:", error));
+      };
+    </script>
+  </body>
+</html>

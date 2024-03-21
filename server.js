@@ -1,12 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const router = express.Router();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models");
 const { auth, requiresAuth } = require("express-openid-connect");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./graphql");
+const path = require("path");
 
 const port = process.env.PORT || 8080;
 
@@ -71,6 +73,38 @@ db.mongoose
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// Define route handler for /companydetail
+app.get("/companydetail", (req, res) => {
+  // Serve the HTML content for company details
+  res.sendFile(path.join(__dirname, "public", "companydetail.html"));
+});
+
+// Define route handler for /userdetail
+app.get("/userdetail", (req, res) => {
+  // Serve the HTML content for company details
+  res.sendFile(path.join(__dirname, "public", "userdetail.html"));
+});
+
+// Define route handler for /schooldetail
+app.get("/schooldetail", (req, res) => {
+  // Serve the HTML content for company details
+  res.sendFile(path.join(__dirname, "public", "schooldetail.html"));
+});
+
+// Define route handler for /interviewdetail
+app.get("/interviewdetail", (req, res) => {
+  // Serve the HTML content for company details
+  res.sendFile(path.join(__dirname, "public", "interviewdetail.html"));
+});
+
+app.get("/profiledetail", (req, res) => {
+  // Serve the HTML content for company details
+  res.sendFile(path.join(__dirname, "public", "profiledetail.html"));
+});
 
 //GraphQL
 app.use(

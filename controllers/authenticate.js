@@ -5,7 +5,7 @@ const authUserLogin = (req, res, next) => {
     // If not authenticated, send a 401 Unauthorized status with an error message
     return res.status(401).send({
       error: "Unauthorized: Please login to make changes!",
-      login: "You can log in at: http://localhost:8080/login",
+      login: "You can log in at: https://interview-app-7mxc.onrender.com/login",
     });
   }
   // If authenticated, call the next middleware function

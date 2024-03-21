@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Details</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5; /* Light gray background */
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 80px auto 20px; /* Added margin-top and reduced margin-bottom */
+        padding: 20px;
+        background-color: #fff; /* White background */
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      }
+
+      h1 {
+        font-size: 48px; /* Reduced font size for better readability */
+        font-weight: 700;
+        margin-bottom: 20px;
+        margin-top: 0px;
+        color: #316ff6; /* Dark gray color */
+        text-align: center;
+      }
+
+      .profile {
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        background-color: #fff; /* White background */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile p {
+        margin: 10px 0; /* Increased margin for better separation */
+        color: #666; /* Gray color */
+      }
+
+      .profile label {
+        font-weight: bold;
+        color: #333; /* Dark gray color */
+      }
+
+      .profile img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%; /* Rounded profile picture */
+        margin-top: 10px; /* Added margin to separate profile picture from other details */
+      }
+
+      .back-button {
+        display: block;
+        margin: 20px auto 0;
+        padding: 12px 24px;
+        background-color: #316ff6; /* Blue color */
+        color: #fff; /* White color */
+        text-decoration: none;
+        border-radius: 6px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-button:hover {
+        background-color: #0056b3; /* Darker blue color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Profile Details</h1>
+
+      <!-- Profile Details -->
+      <div class="profile">
+        <p><label>Name:</label> <strong>Chase</strong></p>
+        <p>
+          <label>Email:</label>
+          <a href="mailto:duggan.chase@gmail.com">duggan.chase@gmail.com</a>
+        </p>
+        <p><label>Nickname:</label> duggan.chase</p>
+        <p><label>Locale:</label> English</p>
+        <p><label>Last Updated:</label> 15th March, 2024</p>
+        <p><label>Email Verified:</label> Yes</p>
+        <p><label>Subject:</label> google-oauth2|106067671923205434949</p>
+        <p>
+          <label>Profile Picture:</label>
+          <img
+            src="https://lh3.googleusercontent.com/a/ACg8ocKH4-PsbQhmhO6iMps2uSkh39xF8rwfjt2-q6zf7mozBog=s96-c"
+            alt="Profile Picture"
+          />
+        </p>
+      </div>
+
+      <!-- Logout Button -->
+      <a href="https://interview-app-7mxc.onrender.com" class="back-button"
+        >Home</a
+      >
+    </div>
+  </body>
+</html>

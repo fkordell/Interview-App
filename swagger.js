@@ -3,10 +3,10 @@ const swaggerAutogen = require("swagger-autogen")();
 const doc = {
   info: {
     title: "Interview Application",
-    description: "CSE 341 API",
+    description: "CSE-341: Final Project - API",
   },
-  host: "localhost:8080",
-  schemes: ["http"],
+  host: "interview-app-7mxc.onrender.com",
+  schemes: ["https"],
 };
 
 const outputFile = "./swagger.json";

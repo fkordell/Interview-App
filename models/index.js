@@ -21,7 +21,7 @@ db.url = mongoURL;
 db.companies = require("./companyModel")(mongoose);
 db.users = require("./userModel")(mongoose);
 db.schools = require("./schoolModel")(mongoose);
-//db. = require("./interviewModel")(mongoose);
+db.interviews = require("./interviewModel")(mongoose);
 
 // Exporting the db object for use in other modules
 module.exports = db;

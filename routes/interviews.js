@@ -1,16 +1,37 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const interviewsController = require('../controllers/interviews');
+const interviewsController = require("../controllers/interviews");
+const authenticateUser = require("../controllers/authenticate");
+const datavalidation = require("../datavalidate/datavalidate");
 
 //Get a list of all interviews
-router.get('/', interviewsController.getInterviews);
-//Get a single interview by its ID
-router.get('/:id', interviewsController.getInterviewById);
-//Create a new interview
-router.post('/', interviewsController.createInterview);
-//Update an interview 
-router.put('/:id', interviewsController.updateInterview);
+router.get("/", interviewsController.getInterviews);
+//Get a single interview
+router.get("/:id", interviewsController.getSingleInterview);
+
+// POST Requests (Create)
+router.post(
+  "/",
+  authenticateUser.authUserLogin,
+  datavalidation.interviewValidation(),
+  datavalidation.checkInterviewData,
+  datavalidation.handleErrors(interviewsController.createInterview)
+);
+
+//Update an interview
+router.put(
+  "/:id",
+  authenticateUser.authUserLogin,
+  datavalidation.interviewValidation(),
+  datavalidation.checkInterviewData,
+  datavalidation.handleErrors(interviewsController.updateInterview)
+);
+
 //Delete an interview
-router.delete('/:id', interviewsController.deleteInterview);
+router.delete(
+  "/:id",
+  authenticateUser.authUserLogin,
+  datavalidation.handleErrors(interviewsController.deleteInterview)
+);
 
 module.exports = router;
